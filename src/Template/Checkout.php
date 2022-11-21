@@ -29,12 +29,18 @@ class Checkout extends Layout
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Product Thumbnail</td>
+                                        <td><img src="../../highres-assets/product.jpg" alt="Product Thumbnail" width="400" height="400"/></td>
                                         <td>Lorem Widget</td>
                                         <td>1</td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div class="frame">
+                        <h2 class="frame_title"></h2>
+                        <div class="frame__contents">
+                            &#10004; With our “Rise & Shine” beta program, you get early access to new features, but they may not always work perfectly. You can change your beta preference at any time after you join.
                         </div>
                     </div>
                     <div class="frame">
@@ -90,6 +96,14 @@ class Checkout extends Layout
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-field">
+                                <label class="form-field__label" for="billing_address_line2">Apt/Suite No.: </label>
+                                <div class="form-field__contents">
+                                    <div class="textarea__container">
+                                        <textarea name="billing_address_line2" id="billing_address_line2" class="textarea" rows="2" cols="35"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-field form-field--required">
                                 <label class="form-field__label" for="billing_address_city">City: <span class="form-field__label-required"> (required)</span></label>
                                 <div class="form-field__contents">
@@ -101,6 +115,9 @@ class Checkout extends Layout
                                 <div class="form-field__contents">
                                     <input type="text" name="billing_address_postalcode" id="billing_address_postalcode" class="entry entry--postal-code" value="" size="10" maxlength="50" />
                                 </div>
+                            </div>
+                            <div class="form-field submit-button">
+                                <input class="submit-button"type="submit" value="Place Order">
                             </div>
                         </div>
                     </div>
