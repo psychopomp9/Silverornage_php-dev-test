@@ -13,7 +13,7 @@ class PostDetails extends Layout
             <p>SHOW CONTENT FOR {$context->getPostId()} HERE</p>
             <br>
             <p><b>Title : </b>{$context->pTitle}</p>
-            <p><b>Body : </b><md-block>{$context->pBody}</md-block></p>
+            <p><b>Body : </b>{$context->pBody}</p>
             <p><b>Author : </b>{$context->pAuthor}</p>
         HTML;
         // @codingStandardsIgnoreEnd
