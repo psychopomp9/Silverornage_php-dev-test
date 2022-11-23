@@ -13,6 +13,7 @@ class PostIndex extends Controller
     {
         $context = new Context();
         $context->title = 'Posts';
+        $context->posts = $this->posts;
         return $context;
     }
 
@@ -24,6 +25,15 @@ class PostIndex extends Controller
     protected function loadData(): void
     {
         // TODO: Load posts from database here.
-        $this->posts = [];
+        $query = "SELECT p.title AS title, a.full_name AS author
+                FROM posts p
+                LEFT JOIN authors a
+                    ON p.author = a.id
+                ORDER BY p.modified_at DESC";
+                
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        $this->posts = $stmt->fetchAll();
     }
 }

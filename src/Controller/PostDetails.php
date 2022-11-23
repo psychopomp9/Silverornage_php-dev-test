@@ -19,6 +19,10 @@ class PostDetails extends Controller
             $context->content = "A post with id {$this->params[0]} was not found.";
         } else {
             $context->title = $this->post->title;
+            $context->pId = $this->post->id;
+            $context->pTitle = $this->post->title;
+            $context->pBody = $this->post->body;
+            $context->pAuthor = $this->post->author;
         }
 
         return $context;
@@ -45,6 +49,31 @@ class PostDetails extends Controller
     protected function loadData(): void
     {
         // TODO: Load post from database here. $this->params[0] is the post id.
-        $this->post = null;
+        $query = sprintf(
+            "SELECT *
+            FROM posts
+            LEFT JOIN authors
+                ON posts.author = authors.id
+            WHERE posts.id = '%s'",
+
+            $this->params[0]
+        );
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if(!empty($result)){
+            $fPost = new Model\Post();
+
+            foreach($result as $k=>$v){
+                $fPost->$k = $v;    
+            }
+            $fPost->author = $result['full_name'];
+        }else{
+            $fPost = null;
+        }
+        $this->post = $fPost;
     }
 }
